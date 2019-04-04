@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-primary review-btn" *ngIf="!previewMode" (click)="review()">Review Changes</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-success submit-btn" *ngIf="!previewMode && !reviewMode"  [disabled]="!hasContentChanged" (click)="submit()">{{submitBtnText$ | async}}</button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn preview-btn" *ngIf="!reviewMode" [ngClass]="{'btn-success': previewMode, 'btn-primary': !previewMode}" (click)="togglePreviewMode()">{{ previewMode ? 'Previewing': 'Preview Changes' }}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<section class="menu-area" id="menu_area">
+       <div class="container">
+       	<div class="row align-items-start">
+       		<div class="col-lg-5 col-md-5">
+       			<div class="section-title relative">
+       				<h1>
+       					Daily Food <br>
+       					Courses
+       				</h1>
+       				<p>A Sample from our gourmet menu selection.</p>
+       				<a href="/menu" class="primary-btn text-uppercase">See Full Menu</a>
+       			</div>
+       		</div>
+       		<div class="col-lg-7 col-md-7">
+       			<div class="menu-list">
+                            <app-editor [dataKey]="'miniMenu'" [content]="content$ | async"></app-editor>
+       			</div>
+       		</div>
+       	</div>
+       </div>
+</section>

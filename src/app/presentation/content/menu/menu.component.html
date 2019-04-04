@@ -1,0 +1,17 @@
+<section class="menu-area" id="menu_area">
+	<div class="container">
+		<div class="row align-items-start">
+			<div class="col-lg-5 col-md-5">
+				<div class="section-title relative">
+                                    <app-editor [dataKey]="'menuHeading'" [content]="menuHeading$ | async"></app-editor>
+				    <a href="/menu.pdf" target="_blank" class="primary-btn text-uppercase">Download Menu</a>
+				</div>
+			</div>
+			<div class="col-lg-7 col-md-7">
+				<div class="menu-list">
+                                    <app-editor [dataKey]="'menu'" [content]="menu$ | async"></app-editor>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

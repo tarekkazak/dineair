@@ -1,0 +1,16 @@
+:host {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width:100%;
+}
+
+.review-btn,
+.preview-btn,
+.submit-btn {
+    width:100%;
+    opacity:0.8;
+    &[disabled] {
+        opacity:0.3;
+    }
+}

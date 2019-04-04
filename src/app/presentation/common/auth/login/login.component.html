@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <div class="form-group">
+                    <label for="email_field">Email address</label>
+                    <input type="email" id="email_field" class="form-control" [(ngModel)]="email" name="email" required aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password_field">Password</label>
+                    <input type="password" [(ngModel)]="password" class="form-control" id="password_field" name="password" requiredclass="form-control" placeholder="Password">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+                <button type="submit" (click)="login()" class="btn btn-primary">Submit</button>
+                <span>Don't have an account ? <a [routerLink]="['/auth/register']" >register</a> here</span>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<button class="btn" [ngClass]="{ 'btn-primary' : !editMode, 'btn-success' : editMode }" *ngIf="canEdit$ | async" (click)="toggleEdit()" >
+    <i class="fa" [ngClass]="{ 'fa-pencil' : !editMode, 'fa-check' : editMode }"></i>
+</button>
+<ng-container *ngIf="editMode">
+    <ckeditor [editor]="Editor" [config]="editorConfig" [(ngModel)]="content"></ckeditor>
+</ng-container>
+<ng-container *ngIf="!editMode">
+    <div [innerHTML]="content"> </div>
+</ng-container>
