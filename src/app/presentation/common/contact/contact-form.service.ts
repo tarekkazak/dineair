@@ -5,6 +5,6 @@ import {HttpClient} from '@angular/common/http';
 export class ContactFormService {
     constructor(public http:HttpClient) {}
     sendEmail(formData) {
-        return this.http.post('http://www.dine-air.com/contact.php', formData);
+        return this.http.post('/contact.php', formData);
     }
 }
