@@ -6,8 +6,6 @@ const contentCtrl = require('../controllers/content.controller');
 const router = express.Router();
 module.exports = router;
 
-router.use(passport.authenticate('jwt', { session: false }))
-
 router.route('/')
   .get((req, res) => {
       contentCtrl.get().then( (content) => {

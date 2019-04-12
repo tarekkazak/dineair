@@ -24,13 +24,11 @@
             ],
             "styles": [
               "src/css/availability-calendar.css",
-              "node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/css/jquerysctipttop.css",
               "node_modules/linearicons/dist/web-font/style.css",
               "node_modules/magnific-popup/dist/magnific-popup.css",
-              "node_modules/jquery-nice-select/css/nice-select.css",
               "node_modules/owl.carousel/dist/assets/owl.carousel.css",
               "src/css/main.css",
               "src/styles.scss"
@@ -40,11 +38,7 @@
                 "node_modules/popper.js/dist/umd/popper.js",
                 "node_modules/bootstrap/dist/js/bootstrap.js",
                 "node_modules/owl.carousel/dist/owl.carousel.js",
-                "node_modules/jquery.sticky/dist/jquery.sticky.js",
                 "src/js/parallax.min.js",
-                "node_modules/jquery-nice-select/js/jquery.nice-select.js",
-                "node_modules/magnific-popup/dist/jquery.magnific-popup.js",
-                "node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
                 "src/js/main.js/"
             ]
           },

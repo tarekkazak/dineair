@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './presentation/common/admin/admin.module';
 import { AuthHeaderInterceptor } from './presentation/common/interceptors/header.interceptor';
 import { CatchErrorInterceptor } from './presentation/common/interceptors/http-error.interceptor';
+import { EndPointInterceptor } from './app.interceptors';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HomeModule } from './presentation/content/home/home.module';
@@ -50,9 +51,15 @@ import { TogglePreviewModeSignal, ToggleReviewModeSignal } from './presentation/
     TogglePreviewModeSignal,
   {
     provide: HTTP_INTERCEPTORS,
+    useClass: EndPointInterceptor,
+    multi: true,
+    },
+  {
+    provide: HTTP_INTERCEPTORS,
     useClass: AuthHeaderInterceptor,
     multi: true,
-  }, {
+    },
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: CatchErrorInterceptor,
     multi: true,
