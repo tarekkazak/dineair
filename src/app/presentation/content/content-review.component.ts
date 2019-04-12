@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { TogglePreviewModeSignal,ToggleReviewModeSignal, ContentUpdatedSignal, ContentLoadedSignal } from './review/content-review.events';
 import { ContentReviewService } from './content-review.service';
-import { tap, map, delay } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { tap, map, mapTo } from 'rxjs/operators';
+import { of, timer, merge, concat } from 'rxjs';
 import * as R from 'ramda';
 import HtmlDiff from 'htmldiff-js';
+import { AuthService } from 'app/presentation/common/auth/auth.service';
 
 @Component({
     selector : 'app-content-review',
@@ -15,7 +16,9 @@ export class ContentReviewComponent {
     content:any = {};
     originalContent:any = {};
     allContent;
-    submitBtnText$ = of('Submit Changes');
+    isLoading = false;
+    submitIcon$ = of('fa-save');
+    isLoggedIn$:any;
     previewMode:boolean = false;
     reviewMode:boolean = false;
     hasContentChanged:boolean = false;
@@ -30,7 +33,7 @@ export class ContentReviewComponent {
         }
     }
     
-    constructor(public contentReviewService:ContentReviewService, public contentUpdatedSignal:ContentUpdatedSignal, public contentLoadedSignal:ContentLoadedSignal,public togglePreviewModeSignal:TogglePreviewModeSignal, public toggleReviewModeSignal:ToggleReviewModeSignal){}
+    constructor(public authService:AuthService, public contentReviewService:ContentReviewService, public contentUpdatedSignal:ContentUpdatedSignal, public contentLoadedSignal:ContentLoadedSignal,public togglePreviewModeSignal:TogglePreviewModeSignal, public toggleReviewModeSignal:ToggleReviewModeSignal){}
 
     diffContent(previousContent, newContent) {
         let diff = R.pipe(
@@ -46,6 +49,10 @@ export class ContentReviewComponent {
     }
 
     ngOnInit() {
+        this.isLoggedIn$ = this.authService.me().pipe(
+            map((user) => !!user)
+        );
+
         this.contentUpdatedSignal.add((content:any) => {
             this.content.sections = {
                 ...this.content.sections,
@@ -75,7 +82,7 @@ export class ContentReviewComponent {
         );
     }
 
-    review() {
+    toggleReviewMode() {
         this.reviewMode = !this.reviewMode;
         let diffedContent = R.pipe(
             R.clone,
@@ -97,9 +104,21 @@ export class ContentReviewComponent {
     }
 
     submit() {
-        this.submitBtnText$ = this.contentReviewService.updateContent(this.content).pipe(
-            delay(1000),
-            map(() => 'Submit Changes')
+        this.hasContentChanged = false;
+        this.submitIcon$ = concat(
+            of('fa-spinner'),
+            timer(2000).pipe(mapTo('fa-spinner')),
+            this.contentReviewService.updateContent(this.content).pipe(
+                tap( () => {
+                    this.isLoading = true; 
+                } ),
+                map( () => 'fa-check-circle' )
+            ),
+            timer(1000).pipe(mapTo('fa-save')).pipe(
+                tap( () => {
+                    this.isLoading = false; 
+                } ),
+            )
         );
     }
 }

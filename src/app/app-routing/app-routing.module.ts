@@ -5,7 +5,7 @@ import { HomeComponent } from 'app/presentation/content/home/home.component';
 import { GalleryComponent } from 'app/presentation/content/gallery/gallery.component';
 import { AboutComponent } from 'app/presentation/content/about/about.component';
 import { MenuComponent } from 'app/presentation/content/menu/menu.component';
-import { ContactInfoComponent } from 'app/presentation/common/contact/contact-info.component';
+import { ContactFormComponent } from 'app/presentation/common/contact/contact-form.component';
 
 const routes: Routes = [
  {
@@ -33,7 +33,7 @@ const routes: Routes = [
 },
 {
     path : 'contact',
-    component : ContactInfoComponent
+    component : ContactFormComponent
 }
 ];
 

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ContentLoadedSignal, ContentUpdatedSignal, ToggleReviewModeSignal } from 'app/presentation/content/review/content-review.events';
 import { EditorContentUpdatedSignal } from 'app/presentation/common/editor/editor.events';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { parseContentOr } from 'app/core/content/content.utils';
 import { toggleReview } from 'app/presentation/common/utils/content.utils';
+import * as $ from 'jquery';
+import 'bootstrap';
 
 @Component({
   selector: 'app-menu',
@@ -21,13 +23,59 @@ export class MenuComponent {
     constructor(public contentLoadedSignal:ContentLoadedSignal, public editorContentUpdatedSignal:EditorContentUpdatedSignal, public contentUpdatedSignal:ContentUpdatedSignal, public toggleReviewModeSignal:ToggleReviewModeSignal) {}
 
 
+    initScrollSpy() {
+        $(document).ready(() => {
+        // Select all links with hashes
+        $('body').scrollspy({ target: '#navbar-menu', offset : 150  })
+        $('a[href*="#"]')
+            // Remove links that don't actually link to anything
+            .not('[href="#"]')
+            .not('[href="#0"]')
+            .click(function (event) {
+                // On-page links
+
+                if ( location.hostname == (<any>this).hostname) {
+                    // Figure out element to scroll to
+                    var target = $((<any>this).hash);
+                    target = target.length ? target : $('[name=' + (<any>this).hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 100
+                        }, 1000, function () {
+                            // Callback after animation
+                            // Must change focus!
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) { // Checking if the target was focused
+                                return false;
+                            } else {
+                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+                                $target.focus(); // Set focus again
+                            };
+                        });
+                    }
+                }
+            });
+            $('.single-menu').each((index, item) => {
+                item.id = `menu-item-${index + 1}`;
+            });    
+        });
+    }
+
     ngOnInit() {
         this.menu$ = toggleReview(
             this.toggleReviewModeSignal,
             this.contentLoadedSignal,
             (data:any) => parseContentOr(this.content.menu, 'menu', data)
-        );
-
+        ).pipe(
+            tap(() => {
+                this.initScrollSpy();
+            })         
+        );         
+                       
         this.menuHeading$ = toggleReview(
             this.toggleReviewModeSignal,
             this.contentLoadedSignal,

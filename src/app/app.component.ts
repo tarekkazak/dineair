@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { MatIconRegistry } from "@angular/material";
 import { DomSanitizer } from "@angular/platform-browser";
+import * as $ from 'jquery';
 
 
 import { AuthService } from 'app/presentation/common/auth/auth.service';
@@ -37,6 +38,20 @@ export class AppComponent implements OnInit {
     // update this.user after login/register/logout
     this.userSubscription = this.authService.$userSource.subscribe((user) => {
       this.user = user;
+    });
+    $(window).on("scroll", function () {
+        if ($(window).scrollTop() >= 80) {
+            $('.header-area').addClass('header-fixed');
+        }
+        else {
+            $('.header-area').removeClass('header-fixed');
+        }
+        if ($(window).scrollTop() >= 1030) {
+            $('.menu-nav').addClass('menu-fixed');
+        }
+        else {
+            $('.menu-nav').removeClass('menu-fixed');
+        }
     });
   }
 

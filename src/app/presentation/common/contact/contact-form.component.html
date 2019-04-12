@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <app-contactinfo></app-contactinfo>
+        </div>
+     </div>
+     <div class="row">
+         <div class="col-md-7">
+             <form #contactForm="ngForm" (ngSubmit)="submit(contactForm.form)" class="pl-30">
+                 <div class="form-group">
+                     <label for="name_field">Name</label>
+                     <input #name="ngModel" type="text" id="name_field" class="form-control" [(ngModel)]="formModel.name" name="name" required aria-describedby="nameHelp" placeholder="Enter name">
+                 </div>
+                 <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                         Name is required.
+                 </div>
+                 <div class="form-group">
+                     <label for="email_field">Email address</label>
+                     <input #email="ngModel" email type="email" id="email_field" class="form-control" [(ngModel)]="formModel.email" name="mail_to" required aria-describedby="emailHelp" placeholder="Enter email">
+                 </div>
+                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                     <div *ngIf="email.errors.required">
+                        Email is required
+                     </div>
+                     <div *ngIf="email.errors.email">
+                         Invalid email
+                     </div>
+                 </div>
+                 <div class="form-group">
+                     <label for="phone_field">Phone</label>
+                     <input type="text" [(ngModel)]="formModel.phone" class="form-control" id="phone_field" name="phone"  placeholder="phone number">
+                 </div>
+                 <div class="form-group">
+                     <label for="fax_field">Fax</label>
+                     <input type="text" [(ngModel)]="formModel.fax" class="form-control" id="fax_field" name="fax" placeholder="fax number">
+                 </div>
+                 <div class="form-group">
+                     <label for="subject_field">Subject</label>
+                     <input required #subject="ngModel" type="text" [(ngModel)]="formModel.subject" class="form-control" id="subject_field" name="mail_subject" placeholder="subject">
+                 </div>
+                 <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
+                         Subject is required.
+                 </div>
+                 <div class="form-group">
+                     <label for="msg_field">Message</label>
+                     <textarea required #message="ngModel" [(ngModel)]="formModel.message" class="form-control" id="msg_field" name="message"  ></textarea>
+                 </div>
+                 <div *ngIf="message.invalid && (message.dirty || message.touched)" class="alert alert-danger">
+                         Message is required.
+                 </div>
+                 <button type="submit" [disabled]="!contactForm.form.valid" class="btn btn-primary">Submit</button>
+                 <div [hidden]="!formSubmitted" class="alert" [ngClass]="formSubmittedResultClass" >{{formSubmittedMessage$ | async}}</div>
+             </form>
+         </div>
+             <div class="col-md-5">
+                    <img class="chef-img img-fluid" src="img/business-jet-interior-1seater.jpg" alt="">
+             </div>
+     </div>
+</div>

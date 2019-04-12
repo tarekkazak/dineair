@@ -9,7 +9,7 @@ export class ContentReviewService {
 
     updateContent(content) {
         return this.http.post('/api/content', content).pipe(
-            catchError(() => of('There was an error please try again')),
+            catchError(() => of('Error')),
             map(() => 'Changes saved')
         );
     }

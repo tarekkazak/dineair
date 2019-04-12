@@ -1,13 +1,11 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <button class="btn btn-primary review-btn" *ngIf="!previewMode" (click)="review()">Review Changes</button>
-        </div>
-        <div class="col-md-6">
-            <button class="btn btn-success submit-btn" *ngIf="!previewMode && !reviewMode"  [disabled]="!hasContentChanged" (click)="submit()">{{submitBtnText$ | async}}</button>
-        </div>
-        <div class="col-md-3">
-            <button class="btn preview-btn" *ngIf="!reviewMode" [ngClass]="{'btn-success': previewMode, 'btn-primary': !previewMode}" (click)="togglePreviewMode()">{{ previewMode ? 'Previewing': 'Preview Changes' }}</button>
-        </div>
-    </div>
+<div class="content-review" *ngIf="isLoggedIn$ | async">
+    <button class="btn review-btn" [ngClass]="{'active': reviewMode}" (click)="toggleReviewMode()">
+        <i class="fa fa-eye"></i>
+    </button>
+    <button class="btn submit-btn" [ngClass]="{ 'is-loading' : isLoading }" [disabled]="!hasContentChanged" (click)="submit()">
+        <i class="fa" [ngClass]="submitIcon$ | async"></i>
+    </button>
+    <button class="btn preview-btn" [ngClass]="{'active': previewMode}" (click)="togglePreviewMode()">
+        <i class="fa fa-pencil-square" ></i>
+    </button>
 </div>

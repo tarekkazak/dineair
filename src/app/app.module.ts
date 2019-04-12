@@ -15,6 +15,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HomeModule } from './presentation/content/home/home.module';
 import { HeaderModule } from './presentation/common/header/header.module';
 import { FooterModule } from './presentation/common/footer/footer.module';
+import { ContactInfoModule } from 'app/presentation/common/contact/contact-info.module';
+import { ContactFormModule } from './presentation/common/contact/contact-form.module';
 import { BannerModule } from './presentation/common/banner/banner.module';
 import { AboutModule } from './presentation/content/about/about.module';
 import { MenuModule } from './presentation/content/menu/menu.module';
@@ -36,6 +38,8 @@ import { TogglePreviewModeSignal, ToggleReviewModeSignal } from './presentation/
     HomeModule,
     HeaderModule,
     FooterModule,
+    ContactFormModule,
+    ContactInfoModule,
     BannerModule,
     AboutModule,
     MenuModule,

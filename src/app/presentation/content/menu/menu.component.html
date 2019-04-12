@@ -4,8 +4,25 @@
 			<div class="col-lg-5 col-md-5">
 				<div class="section-title relative">
                                     <app-editor [dataKey]="'menuHeading'" [content]="menuHeading$ | async"></app-editor>
-				    <a href="/menu.pdf" target="_blank" class="primary-btn text-uppercase">Download Menu</a>
-				</div>
+                                    <nav id="navbar-menu" class="menu-nav navbar navbar-light bg-light">
+                                        <nav class="nav nav-pills flex-column">
+                                            <a class="nav-link" href="#menu-item-1">Breakfast Cold Selections</a>
+                                        <!--    <nav class="nav nav-pills flex-column">
+                                                <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                                                <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+                                        </nav>-->
+                                            <a class="nav-link" href="#menu-item-2">Breakfast Hot Selections</a>
+                                            <a class="nav-link" href="#menu-item-3">Lunch Sandwiches and Lunchboxes</a>
+                                            <a class="nav-link" href="#menu-item-4">Lunch Platters</a>
+                                            <a class="nav-link" href="#menu-item-5">Canapé Elegant Entrées and Savoury Platters</a>
+                                            <a class="nav-link" href="#menu-item-6">Gardren Selection</a>
+                                            <a class="nav-link" href="#menu-item-7">Dinner Dine-Air Cold Selections</a>
+                                            <a class="nav-link" href="#menu-item-8">Dinner Dine-Air Hot Selections</a>
+                                        </nav>
+                                    </nav>
+                                    <a href="/menu.pdf" target="_blank" class="primary-btn text-uppercase">Download Menu</a>
+
+                                </div>
 			</div>
 			<div class="col-lg-7 col-md-7">
 				<div class="menu-list">
