@@ -12,9 +12,9 @@ export class EndPointInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-    console.log(req);
-    // req.url = `${environment.host}${req.url}`;
-    const apiReq = req.clone({ url: `${environment.host}${req.url}`  });
+    console.log(req.url);
+    const apiReq = req.url.includes('contact.php') ? req : req.clone({ url: `${environment.host}${req.url}`  });
+    console.log(apiReq.url);
     return next.handle(apiReq);
   }
 }
