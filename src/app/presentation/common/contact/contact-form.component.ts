@@ -1,4 +1,4 @@
-import { map, tap, catchError, delay } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { timer, concat, of } from 'rxjs';
 import { Component } from '@angular/core';
 import { ContactFormService } from './contact-form.service';
@@ -10,7 +10,7 @@ import { ContactFormService } from './contact-form.service';
 })
 export class ContactFormComponent {
     formModel:any = {};
-    formSubmitted;
+    formSubmitted = false;
     formSubmittedResultClass;
     formSubmittedMessage$;
 
@@ -18,10 +18,9 @@ export class ContactFormComponent {
 
     submit(formData) {
         console.log(formData);
+        this.formSubmitted = true;
         this.formSubmittedMessage$ = concat(
             this.contactFormService.sendEmail(formData.value).pipe(
-                tap(() =>this.formSubmitted = true),
-                delay(1000),
                 map(() => {
                     this.formSubmittedResultClass ='alert-success';
                     return 'Message Sent!' 
@@ -31,7 +30,7 @@ export class ContactFormComponent {
                     return of('Message Failure!');
                 })
             ),
-            timer(1000).pipe(
+            timer(3000).pipe(
                 tap(() =>this.formSubmitted = false),
             )
         );
