@@ -5,15 +5,18 @@
     background:url('img/header-bg.png') no-repeat;
 }
 
-::ng-deep .home-banner-content {
-    color:white !important;
-    h1 {
-        color:white !important;
-    }
-}
-
 @media screen and (max-width: 700px){
     #navbar-menu {
         display:none;
+    }
+}
+
+a.nav-link {
+    color:#ad9966;
+    &:hover {
+        color:black;
+    }
+    &.active {
+        background-color:#ad9966;
     }
 }
