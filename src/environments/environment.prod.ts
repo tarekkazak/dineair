@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host:'http://services.dineair.com'
+  host:'http://services.dine-air.com'
 };
