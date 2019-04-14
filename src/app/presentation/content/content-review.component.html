@@ -5,7 +5,7 @@
     <button class="btn submit-btn" [ngClass]="{ 'is-loading' : isLoading }" [disabled]="!hasContentChanged" (click)="submit()">
         <i class="fa" [ngClass]="submitIcon$ | async"></i>
     </button>
-    <button class="btn preview-btn" [ngClass]="{'active': previewMode}" (click)="togglePreviewMode()">
+    <button class="btn preview-btn" [ngClass]="{'active': !previewMode}" (click)="togglePreviewMode()">
         <i class="fa fa-pencil-square" ></i>
     </button>
 </div>

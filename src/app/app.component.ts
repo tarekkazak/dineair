@@ -44,10 +44,10 @@ export class AppComponent implements OnInit {
             $('.header-area').removeClass('header-fixed');
         }
         if ($(window).scrollTop() >= 1030) {
-            $('.menu-nav').addClass('menu-fixed');
+            $('.menu-container').addClass('menu-fixed');
         }
         else {
-            $('.menu-nav').removeClass('menu-fixed');
+            $('.menu-container').removeClass('menu-fixed');
         }
     });
   }
