@@ -1,3 +1,15 @@
 .logo h3 {
     text-decoration:underline;
 }
+
+@media (max-width: 767px) {
+    
+    .logo {
+        padding-right:0;
+        padding-left:0;
+        top:22px;
+    }
+    .logo h3 {
+        font-size:16px;
+    }
+}
