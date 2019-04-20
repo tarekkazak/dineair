@@ -5,8 +5,8 @@ import { map } from 'rxjs/operators';
 import { AuthService } from 'app/presentation/common/auth/auth.service';
 import { EditorContentUpdatedSignal } from 'app/presentation/common/editor/editor.events';
 import { TogglePreviewModeSignal } from 'app/presentation/content/review/content-review.events';
-import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-import { environment } from 'environments/environment';
+//import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
+//import { environment } from 'environments/environment';
 
 @Component({
     selector : 'app-editor',
@@ -59,17 +59,17 @@ export class EditorComponent {
     }
 
     onReady(editor) {
-       if(!environment.production) {
-            console.log('init inspector');
-           CKEditorInspector.attach(this.dataKey, editor);
-       }
+    //if(!environment.production) {
+    //        console.log('init inspector');
+    //       CKEditorInspector.attach(this.dataKey, editor);
+    //   }
     }
 
-    ngOnDestroy() {
-       if(!environment.production) {
-            CKEditorInspector.detach(this.dataKey);
-       }
-    }
+    //ngOnDestroy() {
+    //if(!environment.production) {
+    //       CKEditorInspector.detach(this.dataKey);
+    //   }
+    //}
 
     toggleEdit() {
         this.editMode = !this.editMode;
