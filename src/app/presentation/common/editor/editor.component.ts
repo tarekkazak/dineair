@@ -7,7 +7,7 @@ import { EditorContentUpdatedSignal } from 'app/presentation/common/editor/edito
 import { TogglePreviewModeSignal } from 'app/presentation/content/review/content-review.events';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 import { environment } from 'environments/environment';
-//import { MenuEditing } from './plugin';
+
 @Component({
     selector : 'app-editor',
     templateUrl : './editor.component.html',
@@ -25,24 +25,21 @@ export class EditorComponent {
     @Input()
     dataKey:string;
 
-    editorConfig:any;
+    editorConfig = {
+        heading: {
+            options: [
+                { model: 'heading1', view: 'h1', title: 'Heading 1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4' },
+                { model: 'heading5', view: 'h5', title: 'Heading 5' }
+            ]
+        }
+    };
 
     constructor(public authService:AuthService, public editorContentUpdatedSignal:EditorContentUpdatedSignal, public togglePreviewModeSignal:TogglePreviewModeSignal) {}
 
     ngOnInit() {
-    //let extraPlugins = this.dataKey === 'menu' ? [MenuEditing]:[];
-        this.editorConfig = {
-            heading: {
-                options: [
-                    { model: 'heading1', view: 'h1', title: 'Heading 1' },
-                    { model: 'heading2', view: 'h2', title: 'Heading 2' },
-                    { model: 'heading3', view: 'h3', title: 'Heading 3' },
-                    { model: 'heading4', view: 'h4', title: 'Heading 4' },
-                    { model: 'heading5', view: 'h5', title: 'Heading 5' }
-                ]
-            }
-            //extraPlugins
-        };
         let canEdit$ = this.authService.me().pipe(
         //map((user) => user.isAdmin)
             map((user) => !!user)
@@ -63,6 +60,7 @@ export class EditorComponent {
 
     onReady(editor) {
        if(!environment.production) {
+            console.log('init inspector');
            CKEditorInspector.attach(this.dataKey, editor);
        }
     }
