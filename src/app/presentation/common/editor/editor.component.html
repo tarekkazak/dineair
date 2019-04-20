@@ -2,7 +2,7 @@
     <i class="fa" [ngClass]="{ 'fa-pencil' : !editMode, 'fa-check' : editMode }"></i>
 </button>
 <ng-container *ngIf="editMode">
-    <ckeditor [editor]="Editor" [config]="editorConfig" [(ngModel)]="content"></ckeditor>
+    <ckeditor [editor]="Editor" [config]="editorConfig" [(ngModel)]="content" (ready)="onReady($event)"></ckeditor>
 </ng-container>
 <ng-container *ngIf="!editMode">
     <div [innerHTML] ="content"> </div>

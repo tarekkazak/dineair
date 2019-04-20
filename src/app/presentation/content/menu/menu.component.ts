@@ -71,6 +71,7 @@ export class MenuComponent {
             this.contentLoadedSignal,
             (data:any) => parseContentOr(this.content.menu, 'menu', data)
         ).pipe(
+            map((menuContent) => (menuContent as string).replace('GARDREN', 'GARDEN')),
             tap(() => {
                 this.initScrollSpy();
             })         
