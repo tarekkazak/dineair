@@ -49,6 +49,12 @@ export class AppComponent implements OnInit {
         else {
             $('.menu-container').removeClass('menu-fixed');
         }
+        if ($(window).scrollTop() >= 5741) {
+            $('.menu-container').addClass('menu-fixed--at-bottom');
+        }
+        else {
+            $('.menu-container').removeClass('menu-fixed--at-bottom');
+        }
     });
   }
 

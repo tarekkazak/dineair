@@ -704,6 +704,7 @@ th {
 
 .fixed-view-menu,
 .fixed-book-table {
+  z-index:1;
   position: fixed;
   top: 52.5%;
   min-height: 180px;

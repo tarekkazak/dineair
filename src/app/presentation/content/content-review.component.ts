@@ -40,12 +40,12 @@ export class ContentReviewComponent {
             R.prop('sections'),
             R.keys,
             R.reduce( (agg, key) => { 
-                let getSection = R.path(['sections', key]);
+                let getSection = R.pathOr('', ['sections', key]);
                 let notEqProps = R.complement(R.eqProps);
                 return agg || notEqProps('content', getSection(previousContent), getSection(newContent));
             }, false )
         );
-        return diff(previousContent);
+        return diff(newContent); //current content must be passed because new keys may have been added
     }
 
     ngOnInit() {
@@ -59,7 +59,7 @@ export class ContentReviewComponent {
                 ...content
             };
             this.hasContentChanged = this.diffContent(this.originalContent, this.content);
-            console.log(this.content);
+            console.log('has content changed and content', this.hasContentChanged, this.content);
         });
 
         this.contentLoadedSignal.dispatch((<any>this.contentReviewService.getContent().pipe(
@@ -89,7 +89,7 @@ export class ContentReviewComponent {
             R.prop('sections'),
             R.mapObjIndexed( (section, key, obj) => {
                 return {
-                    content : HtmlDiff.execute(this.originalContent.sections[key].content, section.content)
+                    content : HtmlDiff.execute(R.pathOr('', ['sections', key, 'content'], this.originalContent), section.content)
                 };
             } ),
             (sections) => ({ sections }),

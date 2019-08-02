@@ -28,7 +28,9 @@
 			</div>
 			<div class="col-lg-7 col-md-7">
 				<div class="menu-list">
-                                    <app-editor [dataKey]="'menu'" [content]="menu$ | async"></app-editor>
+                                    <div class="single-menu">
+                                        <app-editor [dataKey]="'menu'" [content]="menu$ | async"></app-editor>
+                                    </div>
 				</div>
 			</div>
 		</div>
