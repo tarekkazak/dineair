@@ -54,7 +54,7 @@
     "linearicons": "^1.0.1",
     "magnific-popup": "^1.1.0",
     "method-override": "^2.3.10",
-    "mongoose": "^5.4.20",
+    "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
     "ng2-dragula": "^1.5.0",
     "nodemon": "^1.17.5",
