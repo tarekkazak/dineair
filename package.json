@@ -50,7 +50,7 @@
     "http-errors": "^1.6.3",
     "joi": "^13.3.0",
     "jquery.sticky": "^0.2.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "linearicons": "^1.0.1",
     "magnific-popup": "^1.1.0",
     "method-override": "^2.3.10",
